@@ -8,7 +8,7 @@ def create_grid(rows, cols):
 
 # Clear the console and display the current state of the grid
 def display_grid(grid):
-    os.system('cls' if os.name == 'nt' else 'clear')  # Clear screen for Windows ('cls') or Unix-based systems ('clear')
+    os.system('cls' if os.name == 'nt' else 'clear')  # Clear the screen for Windows ('cls') or Unix-based systems ('clear')
     for row in grid:
         print(''.join(row))  # Print each row as a string
     print()
@@ -37,7 +37,14 @@ def next_generation(grid):
 
 # Main function to initialize and run the simulation
 def main():
-    rows, cols = 20, 40  # Dimensions of the grid
+    # Prompt the user to input the size of the grid
+    try:
+        rows = int(input("Enter the number of rows for the grid: "))
+        cols = int(input("Enter the number of columns for the grid: "))
+    except ValueError:
+        print("Invalid input. Using default grid size of 20x40.")
+        rows, cols = 20, 40
+
     grid = create_grid(rows, cols)  # Initialize the grid
     while True:
         display_grid(grid)  # Display the current state of the grid
@@ -47,4 +54,5 @@ def main():
 # Entry point of the program
 if __name__ == "__main__":
     main()
+
 
